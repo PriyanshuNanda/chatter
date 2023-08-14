@@ -1,32 +1,45 @@
+import 'package:chatter/screens/login_screen.dart';
+import 'package:chatter/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:chatter/constants.dart';
+
 class WelcomeScreen extends StatefulWidget {
   const WelcomeScreen({super.key});
-  static const String iD='welcomeScreen';
+  static const String iD = 'welcomeScreen';
   @override
   State<WelcomeScreen> createState() => _WelcomeScreenState();
 }
 
-class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProviderStateMixin {
+class _WelcomeScreenState extends State<WelcomeScreen>
+    with SingleTickerProviderStateMixin {
   late AnimationController controller;
   late Animation animation;
   @override
   void initState() {
     super.initState();
-    controller=AnimationController(vsync:this,duration: const Duration(seconds: 1,),);
+    controller = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 1000,
+      ),
+    );
     controller.forward();
-    animation=ColorTween(begin: Colors.blueGrey,end:Colors.white ,).animate(controller);
+    animation = ColorTween(
+      begin: Colors.blueGrey,
+      end: Colors.white,
+    ).animate(controller);
     controller.addListener(() {
-      setState(() {
-
-      });
+      setState(() {});
     });
   }
+
   @override
   void dispose() {
-    // TODO: implement dispose
-    super.dispose();
     controller.dispose();
+    super.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,57 +60,35 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     child: Image.asset('images/logo.png'),
                   ),
                 ),
-                const Text(
-                  'Flash Chat',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.blueGrey,
-                  ),
+                AnimatedTextKit(
+                  animatedTexts: [
+                    TypewriterAnimatedText(
+                      'Chatter',
+                      textStyle: const TextStyle(
+                        fontSize: 45.0,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.blueGrey,
+                      ),
+                      speed: const Duration(
+                        milliseconds: 200,
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
             const SizedBox(
               height: 48.0,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
-                elevation: 5.0,
-                color: Colors.lightBlueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to login screen.
-                    Navigator.pushNamed(context, 'login');
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: const Text(
-                    'Log In',
-                  ),
-                ),
-              ),
+            const MyCustomButton(
+              color: Colors.lightBlueAccent,
+              title: 'Log In',
+              navigationDestination: LoginScreen.id,
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Material(
+            const MyCustomButton(
                 color: Colors.blueAccent,
-                borderRadius: BorderRadius.circular(30.0),
-                elevation: 5.0,
-                child: MaterialButton(
-                  onPressed: () {
-                    //Go to registration screen.
-                    Navigator.pushNamed(context, 'registration');
-                  },
-                  minWidth: 200.0,
-                  height: 42.0,
-                  child: const Text(
-                    'Register',
-                  ),
-                ),
-              ),
-            ),
+                title: 'Register',
+                navigationDestination: RegistrationScreen.id)
           ],
         ),
       ),
