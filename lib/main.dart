@@ -10,20 +10,13 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
-  FirebaseOptions getFirebaseOptions() {
-    return const FirebaseOptions(
-      appId: '1:867692937205:web:ae362025bdda8013f2aabc',
-      apiKey: 'AIzaSyDnQZmc-95dkOEzPHpFaYDFx9khza6sXVo',
-      projectId: 'chatter-fc0e4',
-      messagingSenderId: '867692937205',
-      storageBucket: 'chatter-fc0e4.appspot.com',
-    );
-  }
-
-  Future<FirebaseApp> initializeFirebase() async {
-    final FirebaseOptions opitions = getFirebaseOptions();
-    return Firebase.initializeApp(options: opitions);
-  }
+  await Firebase.initializeApp(options:const FirebaseOptions(
+          appId: '1:867692937205:web:ae362025bdda8013f2aabc',
+          apiKey: 'AIzaSyDnQZmc-95dkOEzPHpFaYDFx9khza6sXVo',
+          projectId: 'chatter-fc0e4',
+          messagingSenderId: '867692937205',
+          storageBucket: 'chatter-fc0e4.appspot.com',
+        ),);
 
   runApp(const FlashChat());
 }
