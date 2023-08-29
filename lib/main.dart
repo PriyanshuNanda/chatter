@@ -11,11 +11,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options:const FirebaseOptions(
-          appId: '1:867692937205:web:ae362025bdda8013f2aabc',
-          apiKey: 'AIzaSyDnQZmc-95dkOEzPHpFaYDFx9khza6sXVo',
-          projectId: 'chatter-fc0e4',
-          messagingSenderId: '867692937205',
-          storageBucket: 'chatter-fc0e4.appspot.com',
+          appId: 'Your-app-id',
+          apiKey: 'YOUR-API-KEY',
+          projectId: 'PROJECT-ID',
+          messagingSenderId: 'YOUR-MESSAGING-ID',
+          storageBucket: 'YOUR-PROJECT-STORAGE-BUCKET',
         ),);
 
   runApp(const FlashChat());
